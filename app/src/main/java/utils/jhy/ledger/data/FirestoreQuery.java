@@ -57,7 +57,7 @@ public class FirestoreQuery {
         that.setCategory(data.split(","));
     }
 
-    public static void insertData(MainData data) {
+    public static void insertData(MainData data, final InputDialog that) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
         user.put("state", data.getState());
@@ -69,18 +69,20 @@ public class FirestoreQuery {
         user.put("user", data.getUser());
         user.put("category", data.getCategory());
 
-        db.collection("2019년").document("8월").collection("리스트")
+        db.collection(data.getDate().split("-")[0] + "년").document(data.getDate().split("-")[1] + "월").collection("리스트")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                        that.dialogFinish(true);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error adding document", e);
+                        that.dialogFinish(false);
                     }
                 });
     }

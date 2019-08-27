@@ -123,7 +123,7 @@ public class InputDialog extends Dialog {
                 else
                     mMaindata.setState("OUT");
 
-                FirestoreQuery.insertData(mMaindata);
+                FirestoreQuery.insertData(mMaindata, InputDialog.this);
             }
         });
 
@@ -188,5 +188,14 @@ public class InputDialog extends Dialog {
                 builder.show();
             }
         });
+    }
+
+    public void dialogFinish(boolean isSuccess) {
+        if(isSuccess) {
+            Toast.makeText(activity, "입력 완료!", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(activity, "오류 발생...", Toast.LENGTH_SHORT).show();
+        }
+        dismiss();
     }
 }
