@@ -4,13 +4,11 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import utils.jhy.ledger.data.Const;
 import utils.jhy.ledger.data.FirestoreQuery;
 import utils.jhy.ledger.dialog.AlldayNotification;
 
@@ -36,7 +34,8 @@ public class MainActivity extends BaseActivity {
         }
 
         AlldayNotification.notify(this, "asdf", 9);
-
+        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+        startActivity(intent);
         FirestoreQuery.getData();
     }
 }
