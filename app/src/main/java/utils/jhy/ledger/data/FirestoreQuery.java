@@ -57,6 +57,7 @@ public class FirestoreQuery {
         that.setCategory(data.split(","));
     }
 
+    //가계 데이터 삽입
     public static void insertData(MainData data, final InputDialog that) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> user = new HashMap<>();
@@ -86,4 +87,24 @@ public class FirestoreQuery {
                     }
                 });
     }
+
+    //가계데이터 조회
+    public static void getData() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("2019년").document("08월").collection("리스트")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData().toString());
+                            }
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+    }
+
 }

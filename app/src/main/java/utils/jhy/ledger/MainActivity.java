@@ -37,5 +37,6 @@ public class MainActivity extends BaseActivity {
 
         AlldayNotification.notify(this, "asdf", 9);
 
+        FirestoreQuery.getData();
     }
 }

@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#7FA471</color>
+    <color name="colorPrimaryDark">#233833</color>
+    <color name="colorAccent">#F08E67</color>
 
     <color name="btnActive">#00000000</color>
     <color name="btnNonactive">#BDBDBD</color>
+
+    <!--단청스타일-->
+    <color name="DWhite">#E5E4EC</color>
+    <color name="DGray">#90A3C4</color>
+    <color name="DOrange">#F08E67</color>
+    <color name="DBrown">#945C45</color>
+    <color name="DGreen">#7FA471</color>
+    <color name="DDark">#233833</color>
 </resources>
