@@ -39,7 +39,7 @@ public class FirestoreQuery {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData().toString());
                                 if (what.equals(document.getId())) {
-                                    assembleCategory(document.getData().toString(), that);
+                                    assembleConst(document.getData().toString(), that);
                                 }
                             }
                         } else {
@@ -49,8 +49,10 @@ public class FirestoreQuery {
                 });
     }
 
-    private static void assembleCategory(String data, InputDialog that) {
+    //카테고리 데이터 파싱
+    private static void assembleConst(String data, InputDialog that) {
         data = data.trim();
+        data = data.replace(" ","");
         data = data.replace("{", "");
         data = data.replace("}", "");
         data = data.replace("=", "");

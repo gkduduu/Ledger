@@ -40,42 +40,46 @@ public class NotiService extends NotificationListenerService {
 
     @Override
     public void onNotificationPosted(StatusBarNotification sbn) {
-        Log.i("jhy", "[jhy] onNotificationPosted() - " + sbn.toString());
-        Log.i("jhy", "[jhy] PackageName:" + sbn.getPackageName());
-        Log.i("jhy", "[jhy] PostTime:" + sbn.getPostTime());
+        try {
+            Log.i("jhy", "[jhy] onNotificationPosted() - " + sbn.toString());
+            Log.i("jhy", "[jhy] PackageName:" + sbn.getPackageName());
+            Log.i("jhy", "[jhy] PostTime:" + sbn.getPostTime());
 
-        Notification notificatin = sbn.getNotification();
-        Bundle extras = notificatin.extras;
-        String title = extras.getString(Notification.EXTRA_TITLE);
-        int smallIconRes = extras.getInt(Notification.EXTRA_SMALL_ICON);
-        Bitmap largeIcon = ((Bitmap) extras.getParcelable(Notification.EXTRA_LARGE_ICON));
-        CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
-        CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
+            Notification notificatin = sbn.getNotification();
+            Bundle extras = notificatin.extras;
+            String title = extras.getString(Notification.EXTRA_TITLE);
+            int smallIconRes = extras.getInt(Notification.EXTRA_SMALL_ICON);
+            Bitmap largeIcon = ((Bitmap) extras.getParcelable(Notification.EXTRA_LARGE_ICON));
+            CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
+            CharSequence subText = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
 
-        Log.i("jhy", "[jhy] Title:" + title);
-        Log.i("jhy", "[jhy] Text:" + text);
-        Log.i("jhy", "[jhy] Sub Text:" + subText);
+            Log.i("jhy", "[jhy] Title:" + title);
+            Log.i("jhy", "[jhy] Text:" + text);
+            Log.i("jhy", "[jhy] Sub Text:" + subText);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, Object> user = new HashMap<>();
-        user.put("packageName", sbn.getPackageName());
-        user.put("PostTime", sbn.getPostTime());
-        user.put("Title", title);
-        user.put("Text", text);
-        user.put("Sub Text", subText);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            Map<String, Object> user = new HashMap<>();
+            user.put("packageName", sbn.getPackageName());
+            user.put("PostTime", sbn.getPostTime());
+            user.put("Title", title);
+            user.put("Text", text);
+            user.put("Sub Text", subText);
 
-        db.collection("push")
-                .add(user)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                    }
-                });
+            db.collection("push")
+                    .add(user)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                        }
+                    });
+        }catch (Exception e) {
+
+        }
     }
 
     @Override

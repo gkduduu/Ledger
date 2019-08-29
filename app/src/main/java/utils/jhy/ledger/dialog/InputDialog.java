@@ -177,7 +177,8 @@ public class InputDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle(Html.fromHtml("<font color='#3388DD'><b>카테고리</b></font>"));
+//                builder.setTitle(Html.fromHtml("<font color='#3388DD'><b>카테고리</b></font>"));
+                builder.setTitle("카테고리");
                 builder.setItems(category, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
