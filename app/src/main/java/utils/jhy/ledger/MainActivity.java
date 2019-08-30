@@ -34,8 +34,8 @@ public class MainActivity extends BaseActivity {
         }
 
         AlldayNotification.notify(this, "asdf", 9);
-        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-        startActivity(intent);
-        FirestoreQuery.getData();
+//        Intent intent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
+//        startActivity(intent);
+//        FirestoreQuery.getData();
     }
 }

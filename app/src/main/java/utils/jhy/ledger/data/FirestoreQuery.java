@@ -1,5 +1,6 @@
 package utils.jhy.ledger.data;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -13,9 +14,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import utils.jhy.ledger.BaseActivity;
 import utils.jhy.ledger.dialog.InputDialog;
 
 /**
@@ -91,20 +94,26 @@ public class FirestoreQuery {
     }
 
     //가계데이터 조회
-    public static void getData() {
+    public static void getData(final BaseActivity act) {
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("2019년").document("08월").collection("리스트")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        ArrayList<MainData> data = new ArrayList<>();
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData().toString());
+                                MainData d = new MainData();
+                                d.setComment(document.getData().toString());
+                                data.add(d);
                             }
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }
+                        act.callbackGetData(act, data);
                     }
                 });
     }
