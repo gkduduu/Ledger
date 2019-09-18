@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="utils.jhy.ledger">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".data.JApplication"
         android:allowBackup="true"
@@ -10,16 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".SplashActivity">
-
-        </activity>
-        <activity android:name=".ListActivity">
+        <activity android:name=".TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".ListActivity">
+
+        </activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".dialog.DialogActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
@@ -32,7 +36,5 @@
             </intent-filter>
         </service>
     </application>
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
