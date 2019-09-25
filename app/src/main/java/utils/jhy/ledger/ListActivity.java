@@ -32,6 +32,7 @@ public class ListActivity extends BaseActivity {
         LIST_RV.setLayoutManager(manager);
 
         FirestoreQuery.getData(this);
+//        FirestoreQuery.setCate();
     }
 
     public void dataUpdate(ArrayList<MainData> data) {

@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -119,13 +120,12 @@ public class FirestoreQuery {
                 });
     }
 
-    public static void setCate() {
+    public static void addCate(String category, String name) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> city = new HashMap<>();
-        city.put("테스트추가2", "");
+        city.put(name, "");
 
-
-        db.collection("const").document("category")
+        db.collection("const").document(category)
                 .set(city, SetOptions.merge())
                 //setOption.merge는 필수임!
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -141,6 +141,16 @@ public class FirestoreQuery {
                     }
                 });
 
+    }
+
+    public static void delCate() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("const").document("category");
+
+        Map<String,Object> updates = new HashMap<>();
+        updates.put("테스트추가2", FieldValue.delete());
+
+        docRef.update(updates).addOnSuccessListener(null);
     }
 
 }
